@@ -1,0 +1,4 @@
+jQueryImageScaler
+=================
+
+Jquery Image Scaler
