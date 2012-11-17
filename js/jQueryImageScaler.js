@@ -2,13 +2,7 @@
 	"use strict";
 	$.ImageScaler = {};
 	
-	function getImageSize(el) {
-		var size = {};
-		size.w = $(el).width();
-		size.h = $(el).height();
-		
-		return size;
-	};
+	
 	
 	var ImageScaler = function(el, options){
 		this.SIZE = {};
@@ -19,29 +13,34 @@
 						 };
 		
 		this._create(el, options);
+		
 	};
 	
 	$.extend(ImageScaler.prototype,{
 		version  :  "1.0",
 		
 		_create: function(el, options) {
-			
+		
 			this._setImageSize();
 			this.createTracker(el);
 			
 		},
 		_setImageSize : function() {
 			var el = this.el;
-			this.SIZE.w = $(el).width();
-			this.SIZE.h = $(el).height();
-			console.log($(el).width());
+			var size = {}
+			$(el).load(function(){
+				
+				size.w = $(el).width();
+				size.h  = $(el).height();
+			});
+			this.SIZE = size;
 		},
 		_getImageSize : function() {
 			return this.SIZE;
 		},
 		createTracker : function(el) {
 			console.log($(this.el));
-			console.log(getImageSize(el));
+			console.log(this._getImageSize());
 			console.log('Tracker Create function');
 		}
 	});
